@@ -16,16 +16,16 @@
 
 .modal-content {
   background: var(--bg-primary);
-  border-radius: 16px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
   max-height: 90vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideUp 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   position: relative;
   z-index: var(--z-modal);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-light);
 }
 
 .modal-small {
@@ -44,54 +44,43 @@
 }
 
 .modal-header {
-  padding: 1.5rem 2rem;
-  border-bottom: none;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
-  color: var(--white);
-  position: relative;
-}
-
-.modal-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .modal-title {
   margin: 0;
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.5715;
 }
 
 .modal-close {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   border: none;
-  color: var(--white);
-  font-size: 1.5rem;
+  color: var(--text-muted);
+  font-size: 14px;
   line-height: 1;
   cursor: pointer;
   padding: 0;
-  width: 36px;
-  height: 36px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-sm);
+  transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .modal-close:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  transform: scale(1.1);
+  color: var(--text-primary);
+  background-color: var(--gray-100);
 }
 
 .modal-body {

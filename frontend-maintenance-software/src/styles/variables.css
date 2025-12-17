@@ -1,75 +1,75 @@
-/* CSS Variables - Design System */
+/* CSS Variables - Ant Design System */
 :root {
-  /* Primary Colors - Professional Blue Palette */
-  --primary-gradient-start: #0F2027;
-  --primary-gradient-end: #2C5364;
-  --primary-color: #2563eb;
-  --primary-dark: #1e40af;
-  --primary-light: #60a5fa;
-  --primary-hover: #1d4ed8;
+  /* Primary Colors - Ant Design Blue */
+  --primary-gradient-start: #0050b3;
+  --primary-gradient-end: #1890ff;
+  --primary-color: #1890ff;
+  --primary-dark: #096dd9;
+  --primary-light: #40a9ff;
+  --primary-hover: #40a9ff;
   
   /* Secondary Colors */
-  --secondary-color: #0ea5e9;
-  --secondary-dark: #0284c7;
-  --secondary-light: #38bdf8;
-  --secondary-hover: #0369a1;
+  --secondary-color: #722ed1;
+  --secondary-dark: #531dab;
+  --secondary-light: #9254de;
+  --secondary-hover: #9254de;
   
-  /* Status Colors - Enhanced */
-  --success-color: #10b981;
-  --success-light: #d1fae5;
-  --success-dark: #059669;
+  /* Status Colors - Ant Design Palette */
+  --success-color: #52c41a;
+  --success-light: #b7eb8f;
+  --success-dark: #389e0d;
   
-  --warning-color: #f59e0b;
-  --warning-light: #fef3c7;
-  --warning-dark: #d97706;
+  --warning-color: #faad14;
+  --warning-light: #ffe58f;
+  --warning-dark: #d48806;
   
-  --danger-color: #ef4444;
-  --danger-light: #fee2e2;
-  --danger-dark: #dc2626;
+  --danger-color: #ff4d4f;
+  --danger-light: #ffccc7;
+  --danger-dark: #cf1322;
   
-  --info-color: #06b6d4;
-  --info-light: #cffafe;
-  --info-dark: #0891b2;
+  --info-color: #1890ff;
+  --info-light: #91d5ff;
+  --info-dark: #096dd9;
   
-  /* Neutral Colors */
+  /* Neutral Colors - Ant Design Grays */
   --white: #ffffff;
-  --gray-100: #f8f9fa;
-  --gray-200: #e9ecef;
-  --gray-300: #dee2e6;
-  --gray-400: #ced4da;
-  --gray-500: #adb5bd;
-  --gray-600: #6c757d;
-  --gray-700: #495057;
-  --gray-800: #343a40;
-  --gray-900: #212529;
-  --black: #4a5568;
+  --gray-100: #fafafa;
+  --gray-200: #f5f5f5;
+  --gray-300: #f0f0f0;
+  --gray-400: #d9d9d9;
+  --gray-500: #bfbfbf;
+  --gray-600: #8c8c8c;
+  --gray-700: #595959;
+  --gray-800: #434343;
+  --gray-900: #262626;
+  --black: #000000;
   
-  /* Text Colors */
-  --text-primary: #374151;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
+  /* Text Colors - Ant Design */
+  --text-primary: rgba(0, 0, 0, 0.85);
+  --text-secondary: rgba(0, 0, 0, 0.65);
+  --text-muted: rgba(0, 0, 0, 0.45);
   --text-light: #ffffff;
   
   /* Background Colors */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-dark: #475569;
-  --bg-overlay: rgba(148, 163, 184, 0.3);
+  --bg-secondary: #fafafa;
+  --bg-dark: #001529;
+  --bg-overlay: rgba(0, 0, 0, 0.45);
   
-  /* Border Colors */
-  --border-color: #dee2e6;
-  --border-light: #e9ecef;
-  --border-dark: #adb5bd;
+  /* Border Colors - Ant Design */
+  --border-color: #d9d9d9;
+  --border-light: #f0f0f0;
+  --border-dark: #bfbfbf;
   
-  /* Shadows - Enhanced for depth */
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.1);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  /* Shadows - Ant Design Style */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 6px 16px -8px rgba(0, 0, 0, 0.08), 0 9px 28px 0 rgba(0, 0, 0, 0.05), 0 12px 48px 16px rgba(0, 0, 0, 0.03);
+  --shadow-xl: 0 9px 28px 8px rgba(0, 0, 0, 0.05), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0 16px 48px 16px rgba(0, 0, 0, 0.08), 0 12px 32px 16px rgba(0, 0, 0, 0.12);
+  --shadow-focus: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
   
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -98,29 +98,29 @@
   --info: var(--info-color);
   
   /* Gray Scale */
-  --gray-50: #f9fafb;
-  --gray-100: #f8f9fa;
-  --gray-200: #e9ecef;
-  --gray-300: #dee2e6;
-  --gray-400: #ced4da;
-  --gray-500: #adb5bd;
-  --gray-600: #6c757d;
-  --gray-700: #495057;
-  --gray-800: #343a40;
-  --gray-900: #212529;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #f0f0f0;
+  --gray-300: #d9d9d9;
+  --gray-400: #bfbfbf;
+  --gray-500: #8c8c8c;
+  --gray-600: #595959;
+  --gray-700: #434343;
+  --gray-800: #262626;
+  --gray-900: #1f1f1f;
   
-  /* Typography */
-  --font-family-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-family-mono: 'Courier New', Courier, monospace;
+  /* Typography - Ant Design */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 2rem;
-  --font-size-4xl: 2.5rem;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 38px;
   
   --font-weight-light: 300;
   --font-weight-normal: 400;
@@ -128,18 +128,18 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
+  --line-height-tight: 1.35;
+  --line-height-normal: 1.5715;
   --line-height-relaxed: 1.75;
   
-  /* Border Radius - Modern */
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 20px;
-  --radius-3xl: 24px;
+  /* Border Radius - Ant Design */
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 4px;
+  --radius-2xl: 6px;
+  --radius-3xl: 8px;
   --radius-full: 9999px;
   
   /* Transitions */

@@ -1,10 +1,10 @@
-/* Login Component Styles */
+/* Login Component Styles - Ant Design */
 .login-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
   padding: var(--space-lg);
   position: relative;
   overflow: hidden;
@@ -42,16 +42,15 @@
 
 .login-form {
   background: white;
-  padding: var(--space-2xl);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
   width: 100%;
   max-width: 420px;
   position: relative;
   z-index: 1;
-  backdrop-filter: blur(10px);
   animation: slideUp 0.6s ease-out;
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border-light);
 }
 
 @keyframes slideUp {

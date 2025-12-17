@@ -1,20 +1,21 @@
-/* Filter Panel Component */
+/* Filter Panel Component - Ant Design */
 .filter-panel {
   background: white;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   margin-bottom: var(--space-lg);
   overflow: hidden;
-  transition: all var(--transition-normal);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .filter-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-md);
-  background: linear-gradient(135deg, var(--gray-50), white);
-  border-bottom: 1px solid var(--gray-200);
+  padding: 16px 24px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .filter-toggle {
@@ -44,10 +45,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 24px;
-  height: 24px;
-  padding: 0 8px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: var(--primary-color);
   color: white;
   border-radius: var(--radius-full);
   font-size: var(--font-size-xs);
