@@ -4,6 +4,39 @@ const User = require('../models/User');
 const auth = require('../middleware/auth');
 const { isAdmin, isManagerOrAdmin } = require('../middleware/permissions');
 
+// Get user statistics (admin only) - MUST BE BEFORE /:id route
+router.get('/stats/overview', auth, isAdmin, async (req, res) => {
+  try {
+    const totalUsers = await User.countDocuments();
+    const activeUsers = await User.countDocuments({ isActive: true });
+    const inactiveUsers = await User.countDocuments({ isActive: false });
+    
+    const usersByRole = await User.aggregate([
+      {
+        $group: {
+          _id: '$role',
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    
+    // Get site count
+    const Site = require('../models/Site');
+    const totalSites = await Site.countDocuments();
+    
+    res.json({
+      totalUsers,
+      activeUsers,
+      inactiveUsers,
+      usersByRole,
+      totalSites,
+    });
+  } catch (error) {
+    console.error('Error fetching user stats:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
 // Get all users (admin/manager only)
 router.get('/', auth, isManagerOrAdmin, async (req, res) => {
   try {
@@ -201,39 +234,6 @@ router.delete('/:id', auth, isAdmin, async (req, res) => {
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
     console.error('Error deleting user:', error);
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
-});
-
-// Get user statistics (admin only)
-router.get('/stats/overview', auth, isAdmin, async (req, res) => {
-  try {
-    const totalUsers = await User.countDocuments();
-    const activeUsers = await User.countDocuments({ isActive: true });
-    const inactiveUsers = await User.countDocuments({ isActive: false });
-    
-    const usersByRole = await User.aggregate([
-      {
-        $group: {
-          _id: '$role',
-          count: { $sum: 1 },
-        },
-      },
-    ]);
-    
-    // Get site count
-    const Site = require('../models/Site');
-    const totalSites = await Site.countDocuments();
-    
-    res.json({
-      totalUsers,
-      activeUsers,
-      inactiveUsers,
-      usersByRole,
-      totalSites,
-    });
-  } catch (error) {
-    console.error('Error fetching user stats:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
