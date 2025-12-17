@@ -58,11 +58,25 @@ const Users = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
+      console.log('[Users] Fetching users with filters:', filters);
       const data = await UserService.getAll(filters);
-      console.log('Fetched users:', data);
-      setUsers(data || []);
+      console.log('[Users] Received data:', data);
+      console.log('[Users] Data type:', typeof data, 'Is array:', Array.isArray(data));
+      console.log('[Users] Data length:', data?.length);
+      
+      if (Array.isArray(data)) {
+        setUsers(data);
+        console.log(`[Users] Set ${data.length} users in state`);
+      } else {
+        console.error('[Users] Data is not an array:', data);
+        setUsers([]);
+      }
     } catch (error) {
-      console.error('Error fetching users:', error);
+      console.error('[Users] Error fetching users:', error);
+      console.error('[Users] Error response:', error.response);
+      console.error('[Users] Error status:', error.response?.status);
+      console.error('[Users] Error data:', error.response?.data);
+      
       const errorMessage = error.response?.data?.message || error.message || 'Failed to load users';
       toast.error(errorMessage);
       setUsers([]);
