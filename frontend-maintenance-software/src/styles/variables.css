@@ -39,10 +39,10 @@
   --gray-400: #d9d9d9;
   --gray-500: #bfbfbf;
   --gray-600: #8c8c8c;
-  --gray-700: #595959;
-  --gray-800: #434343;
-  --gray-900: #262626;
-  --black: #000000;
+  --gray-700: #8c8c8c;
+  --gray-800: #bfbfbf;
+  --gray-900: #d9d9d9;
+  --black: #595959;
   
   /* Text Colors - Ant Design */
   --text-primary: rgba(0, 0, 0, 0.85);
@@ -53,8 +53,8 @@
   /* Background Colors */
   --bg-primary: #ffffff;
   --bg-secondary: #fafafa;
-  --bg-dark: #001529;
-  --bg-overlay: rgba(0, 0, 0, 0.45);
+  --bg-dark: #1890ff;
+  --bg-overlay: rgba(24, 144, 255, 0.15);
   
   /* Border Colors - Ant Design */
   --border-color: #d9d9d9;

@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  background: linear-gradient(135deg, #40a9ff 0%, #69c0ff 100%);
   padding: var(--space-lg);
   position: relative;
   overflow: hidden;
@@ -70,7 +70,7 @@
   margin-bottom: var(--space-lg);
   font-size: var(--font-size-2xl);
   font-weight: 700;
-  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  background: linear-gradient(135deg, #1890ff, #40a9ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
