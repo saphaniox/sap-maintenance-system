@@ -7,9 +7,14 @@ const { isAdmin, isManagerOrAdmin } = require('../middleware/permissions');
 // Get user statistics (admin only) - MUST BE BEFORE /:id route
 router.get('/stats/overview', auth, isAdmin, async (req, res) => {
   try {
+    console.log('GET /api/users/stats/overview - Request received');
+    console.log('User:', req.user?.email, 'Role:', req.user?.role);
+    
     const totalUsers = await User.countDocuments();
     const activeUsers = await User.countDocuments({ isActive: true });
     const inactiveUsers = await User.countDocuments({ isActive: false });
+    
+    console.log(`Stats: ${totalUsers} total, ${activeUsers} active, ${inactiveUsers} inactive`);
     
     const usersByRole = await User.aggregate([
       {
@@ -24,13 +29,16 @@ router.get('/stats/overview', auth, isAdmin, async (req, res) => {
     const Site = require('../models/Site');
     const totalSites = await Site.countDocuments();
     
-    res.json({
+    const stats = {
       totalUsers,
       activeUsers,
       inactiveUsers,
       usersByRole,
       totalSites,
-    });
+    };
+    
+    console.log('Returning stats:', JSON.stringify(stats));
+    res.json(stats);
   } catch (error) {
     console.error('Error fetching user stats:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
@@ -40,7 +48,11 @@ router.get('/stats/overview', auth, isAdmin, async (req, res) => {
 // Get all users (admin/manager only)
 router.get('/', auth, isManagerOrAdmin, async (req, res) => {
   try {
+    console.log('GET /api/users - Request received');
+    console.log('User:', req.user?.email, 'Role:', req.user?.role);
+    
     const { role, isActive, search } = req.query;
+    console.log('Query params:', { role, isActive, search });
     
     const query = {};
     
@@ -62,11 +74,14 @@ router.get('/', auth, isManagerOrAdmin, async (req, res) => {
       ];
     }
     
+    console.log('Query filter:', JSON.stringify(query));
+    
     const users = await User.find(query)
       .select('-password')
       .populate('assignedSites', 'name code type')
       .sort({ createdAt: -1 });
     
+    console.log(`Found ${users.length} users`);
     res.json(users);
   } catch (error) {
     console.error('Error fetching users:', error);
