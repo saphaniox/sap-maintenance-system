@@ -1,4 +1,9 @@
 {
+  "build": {
+    "env": {
+      "VITE_API_URL": "https://sap-maintenance-system.onrender.com"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
