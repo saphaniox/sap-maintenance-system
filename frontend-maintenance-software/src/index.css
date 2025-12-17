@@ -29,6 +29,9 @@ body {
   background-color: #ffffff;
 }
 
+/* Import responsive styles */
+@import './styles/responsive.css';
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

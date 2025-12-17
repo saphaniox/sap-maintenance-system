@@ -829,33 +829,37 @@ select.form-control option {
 
 @media (max-width: 576px) {
   html {
-    font-size: 12px;
+    font-size: 14px;
   }
   
   .container {
-    padding: 0 var(--spacing-xs);
+    padding: 0 var(--spacing-sm);
   }
   
   .card {
     border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-md);
   }
   
   .card-header {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-md);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
   }
   
   .card-body {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-md);
   }
   
   .btn {
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 8px 14px;
+    font-size: 13px;
+    white-space: nowrap;
   }
   
   .btn-sm {
-    padding: 4px 8px;
-    font-size: 10px;
+    padding: 6px 10px;
+    font-size: 12px;
   }
   
   /* Stack action buttons vertically */
@@ -868,24 +872,99 @@ select.form-control option {
   
   .header-actions {
     flex-direction: column;
+    width: 100%;
   }
   
   .header-actions > * {
     width: 100%;
   }
+
+  /* Form improvements for mobile */
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .form-control {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Modal improvements */
+  .modal {
+    padding: var(--spacing-sm);
+  }
+
+  .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-header {
+    padding: var(--spacing-md);
+  }
+
+  .modal-body {
+    padding: var(--spacing-md);
+  }
+
+  .modal-footer {
+    padding: var(--spacing-md);
+    flex-direction: column-reverse;
+    gap: var(--spacing-sm);
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 @media (max-width: 375px) {
   html {
-    font-size: 11px;
+    font-size: 13px;
   }
   
   .card-header {
-    padding: var(--spacing-xs);
+    padding: var(--spacing-sm);
   }
   
   .card-body {
-    padding: var(--spacing-xs);
+    padding: var(--spacing-sm);
+  }
+
+  .btn {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  .btn-sm {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+}
+
+/* Tablet improvements */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .table-responsive {
+    font-size: 14px;
+  }
+}
+
+/* Landscape phone improvements */
+@media (max-width: 896px) and (orientation: landscape) {
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modal-content {
+    max-height: 80vh;
   }
 }
 

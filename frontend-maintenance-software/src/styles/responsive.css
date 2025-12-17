@@ -1,0 +1,339 @@
+/* Responsive Styles - Mobile First Approach */
+
+/* Base mobile styles (320px and up) */
+@media (max-width: 767px) {
+  /* Page containers */
+  .page-container,
+  .machines-page,
+  .maintenance-page,
+  .inventory-page,
+  .requisitions-page,
+  .sites-page,
+  .users-page,
+  .analytics-page {
+    padding: var(--space-md);
+  }
+
+  /* Page headers */
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .page-header-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .page-header-actions .btn,
+  .page-header-actions .search-input {
+    width: 100%;
+  }
+
+  /* Filter panel */
+  .filter-panel {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .filter-panel select,
+  .filter-panel input {
+    width: 100%;
+  }
+
+  /* Cards and content */
+  .content-card,
+  .data-card {
+    margin-bottom: var(--space-md);
+  }
+
+  /* Grid layouts */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tables */
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table {
+    min-width: 700px;
+  }
+
+  .table th,
+  .table td {
+    padding: var(--space-sm);
+    font-size: 0.875rem;
+  }
+
+  /* Hide less important columns on mobile */
+  .table .hide-mobile {
+    display: none;
+  }
+
+  /* Action buttons in tables */
+  .table-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .table-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Forms */
+  .form-row {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .form-row .form-group {
+    width: 100%;
+  }
+
+  /* Search and filter bars */
+  .search-filter-bar {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .search-filter-bar > * {
+    width: 100%;
+  }
+
+  /* Stat cards */
+  .stat-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Charts */
+  .chart-container {
+    height: 300px;
+    overflow-x: auto;
+  }
+
+  /* Modals */
+  .modal-dialog {
+    margin: var(--space-sm);
+    max-width: calc(100vw - var(--space-lg));
+  }
+
+  .modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  /* Tabs */
+  .tabs-nav {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-button {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Breadcrumbs */
+  .breadcrumbs {
+    font-size: 0.75rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Pagination */
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-xs);
+  }
+
+  .pagination .page-item {
+    margin: 0;
+  }
+
+  /* Hide pagination numbers on small screens */
+  .pagination .page-item:not(.prev):not(.next):not(.active) {
+    display: none;
+  }
+
+  /* Dropdown menus */
+  .dropdown-menu {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    max-height: 50vh;
+    overflow-y: auto;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  /* Tooltips */
+  .tooltip {
+    font-size: 0.75rem;
+  }
+
+  /* Badge sizes */
+  .badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  /* Icon sizes */
+  .icon-lg {
+    font-size: 1.5rem;
+  }
+
+  .icon-md {
+    font-size: 1.25rem;
+  }
+
+  /* Spacing adjustments */
+  .mt-lg, .my-lg {
+    margin-top: var(--space-md) !important;
+  }
+
+  .mb-lg, .my-lg {
+    margin-bottom: var(--space-md) !important;
+  }
+
+  .pt-lg, .py-lg {
+    padding-top: var(--space-md) !important;
+  }
+
+  .pb-lg, .py-lg {
+    padding-bottom: var(--space-md) !important;
+  }
+}
+
+/* Small phones (320px - 374px) */
+@media (max-width: 374px) {
+  .page-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 14px;
+  }
+
+  .table {
+    min-width: 600px;
+    font-size: 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .page-container {
+    padding: var(--space-lg);
+  }
+
+  .modal-dialog {
+    max-width: 600px;
+  }
+}
+
+/* Large tablets and small desktops (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .btn,
+  .nav-link,
+  .dropdown-item,
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .btn:hover,
+  .card:hover,
+  .nav-link:hover {
+    transform: none;
+  }
+
+  /* Better spacing for touch */
+  .btn + .btn {
+    margin-left: var(--space-sm);
+  }
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .sidebar,
+  .page-header-actions,
+  .btn,
+  .pagination {
+    display: none !important;
+  }
+
+  .main-content {
+    padding: 0;
+  }
+
+  .card {
+    page-break-inside: avoid;
+  }
+
+  body {
+    background: white;
+  }
+}
