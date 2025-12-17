@@ -29,7 +29,14 @@ export default function Signup() {
 
     // Enforce minimum password length (match backend requirements)
     if (password.length < 8) {
-      setError('Password should be at least 8 characters long');
+      setError('Password must be at least 8 characters long');
+      return;
+    }
+
+    // Validate password complexity (match backend requirements)
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]/;
+    if (!passwordRegex.test(password)) {
+      setError('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&#)');
       return;
     }
 
@@ -41,7 +48,14 @@ export default function Signup() {
       // Account created - redirect to login page
       navigate('/login');
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Could not create account. Please try again.');
+      const errorMessage = err.response?.data?.message || err.message || 'Could not create account. Please try again.';
+      // Extract validation errors if present
+      if (err.response?.data?.errors && Array.isArray(err.response.data.errors)) {
+        const validationErrors = err.response.data.errors.map(e => e.msg).join(', ');
+        setError(validationErrors);
+      } else {
+        setError(errorMessage);
+      }
     } finally {
       setLoading(false);
     }
@@ -104,6 +118,25 @@ export default function Signup() {
               {showPassword ? '🙈' : '👁️'}
             </button>
           </div>
+          {password && (
+            <div className="password-requirements" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
+              <div style={{ color: password.length >= 8 ? 'green' : 'gray' }}>
+                {password.length >= 8 ? '✓' : '○'} At least 8 characters
+              </div>
+              <div style={{ color: /[A-Z]/.test(password) ? 'green' : 'gray' }}>
+                {/[A-Z]/.test(password) ? '✓' : '○'} One uppercase letter
+              </div>
+              <div style={{ color: /[a-z]/.test(password) ? 'green' : 'gray' }}>
+                {/[a-z]/.test(password) ? '✓' : '○'} One lowercase letter
+              </div>
+              <div style={{ color: /\d/.test(password) ? 'green' : 'gray' }}>
+                {/\d/.test(password) ? '✓' : '○'} One number
+              </div>
+              <div style={{ color: /[@$!%*?&#]/.test(password) ? 'green' : 'gray' }}>
+                {/[@$!%*?&#]/.test(password) ? '✓' : '○'} One special character (@$!%*?&#)
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="form-group">
