@@ -13,7 +13,7 @@ dist-ssr
 *.local
 .env
 .env.local
-.env.production
+# Allow .env.production (contains only public API URL, no secrets)
 
 # Editor directories and files
 .vscode/*
