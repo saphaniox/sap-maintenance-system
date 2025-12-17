@@ -6,7 +6,6 @@ const morgan = require('morgan');
 const path = require('path');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const mongoSanitize = require('express-mongo-sanitize');
 const hpp = require('hpp');
 require('dotenv').config(); // Load environment variables
 
@@ -59,8 +58,25 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Security: Data sanitization against NoSQL injection (Express 5 compatible)
-app.use(mongoSanitize({ replaceWith: '_' }));
+// Security: Custom NoSQL injection sanitization (Express 5 compatible)
+app.use((req, res, next) => {
+  const sanitize = (obj) => {
+    if (obj && typeof obj === 'object') {
+      Object.keys(obj).forEach(key => {
+        if (key.startsWith('$') || key.includes('.')) {
+          delete obj[key];
+        } else if (typeof obj[key] === 'object') {
+          sanitize(obj[key]);
+        }
+      });
+    }
+  };
+  
+  sanitize(req.body);
+  sanitize(req.query);
+  sanitize(req.params);
+  next();
+});
 
 // Security: Prevent HTTP Parameter Pollution
 app.use(hpp());
