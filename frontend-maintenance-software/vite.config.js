@@ -29,4 +29,7 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    cssMinify: false, // Disable CSS minification to avoid lightningcss issues
+  },
 })
