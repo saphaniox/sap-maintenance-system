@@ -15,7 +15,7 @@ const Charts = ({ data, type = 'bar', title }) => {
   }
 
   if (type === 'pie') {
-    return <PieChart data={data} title={title} />;
+    return <PieChartSimple data={data} title={title} />;
   } else if (type === 'bar') {
     return <BarChartSimple data={data} title={title} />;
   } else if (type === 'line') {
@@ -26,7 +26,7 @@ const Charts = ({ data, type = 'bar', title }) => {
 };
 
 // Pie Chart Component
-const PieChart = ({ data, title }) => {
+const PieChartSimple = ({ data, title }) => {
   const total = data.values.reduce((sum, val) => sum + val, 0);
   
   if (total === 0) {
@@ -378,7 +378,7 @@ export const LineChart = ({ data, xKey, yKeys, title, colors = ['#3b82f6', '#10b
 };
 
 // Pie Chart Component (Original - for data arrays with key/value pairs)
-export const PieChartOriginal = ({ data, labelKey, valueKey, title, colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'] }) => {
+export const PieChart = ({ data, labelKey, valueKey, title, colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'] }) => {
   if (!data || data.length === 0) {
     return <div className="chart-no-data">No data available</div>;
   }
