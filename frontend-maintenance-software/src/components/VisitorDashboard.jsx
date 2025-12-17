@@ -78,6 +78,11 @@ const VisitorDashboard = () => {
           <p className="visitor-tip">
             💡 <strong>Tip:</strong> You can update your profile information while waiting for approval.
           </p>
+          <div className="visitor-branding">
+            <p className="visitor-branding-text">
+              Designed and Powered by <span className="brand-highlight">SAP-Technology</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
