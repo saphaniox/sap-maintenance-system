@@ -1,0 +1,156 @@
+/* Lazy Image Component Styles */
+
+.lazy-image-container {
+  position: relative;
+  overflow: hidden;
+  background: var(--gray-100, #f5f5f5);
+}
+
+.lazy-image {
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: block;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+}
+
+.lazy-image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100, #f5f5f5);
+}
+
+.image-skeleton {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background: linear-gradient(
+    90deg,
+    var(--gray-200) 0%,
+    var(--gray-100) 50%,
+    var(--gray-200) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+.lazy-image-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100, #f5f5f5);
+  color: var(--text-secondary, #666);
+  font-size: 14px;
+  gap: 8px;
+}
+
+.lazy-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.3s ease;
+}
+
+.lazy-background.loading {
+  opacity: 0.5;
+}
+
+.lazy-background.loaded {
+  opacity: 1;
+}
+
+.lazy-load {
+  min-height: 50px;
+}
+
+.lazy-placeholder {
+  height: 200px;
+  background: var(--gray-100, #f5f5f5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary, #666);
+  font-size: 14px;
+}
+
+/* Shimmer animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Dark mode support */
+.dark-mode .lazy-image-container,
+.dark-mode .lazy-image-placeholder,
+.dark-mode .lazy-image-error,
+.dark-mode .lazy-load .lazy-placeholder {
+  background: var(--dark-hover, #2a2a2a);
+}
+
+.dark-mode .image-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--dark-border, #333) 0%,
+    var(--dark-hover, #2a2a2a) 50%,
+    var(--dark-border, #333) 100%
+  );
+  background-size: 200% 100%;
+}
+
+.dark-mode .lazy-image-error {
+  color: var(--dark-text-secondary, #b0b0b0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .image-skeleton {
+    min-height: 150px;
+  }
+
+  .lazy-placeholder {
+    height: 150px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .lazy-image-container {
+    border: 1px solid var(--border-color, #e0e0e0);
+  }
+
+  .lazy-image-error {
+    border: 2px solid var(--danger, #ef4444);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .lazy-image,
+  .lazy-background,
+  .image-skeleton {
+    transition: none;
+    animation: none;
+  }
+}
+

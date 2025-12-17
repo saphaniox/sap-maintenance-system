@@ -1,0 +1,84 @@
+# Render Blueprint for SAP Maintenance System
+# This file configures automatic deployment to Render.com
+
+services:
+  # Backend API Server
+  - type: web
+    name: sap-maintenance-backend
+    runtime: node
+    env: node
+    region: oregon # Change to your preferred region
+    plan: free # Change to 'starter' or higher for production
+    buildCommand: cd backend-server && npm install
+    startCommand: cd backend-server && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8000
+      - key: MONGODB_URI
+        sync: false # Set in Render dashboard - NEVER commit actual URI
+      - key: JWT_SECRET
+        generateValue: true # Render will auto-generate a secure secret
+      - key: FRONTEND_URL
+        value: https://sap-maintenance-frontend.onrender.com # Update with your actual frontend URL
+      - key: EMAIL_USER
+        sync: false # Optional: Set in dashboard if using email
+      - key: EMAIL_PASSWORD
+        sync: false # Optional: Set in dashboard if using email
+      - key: AWS_ACCESS_KEY_ID
+        sync: false # Optional: Only if using AWS services
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false # Optional: Only if using AWS services
+      - key: AWS_REGION
+        value: us-east-1 # Optional: Only if using AWS services
+    
+  # Frontend React Application
+  - type: web
+    name: sap-maintenance-frontend
+    runtime: static
+    env: static
+    region: oregon # Should match backend region for lower latency
+    buildCommand: cd frontend-maintenance-software && npm install && npm run build
+    staticPublishPath: frontend-maintenance-software/dist
+    envVars:
+      - key: NODE_ENV
+        value: production
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html # SPA routing support
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+
+# Database Configuration Note:
+# MongoDB Atlas is recommended for production
+# 1. Create a free cluster at mongodb.com/cloud/atlas
+# 2. Whitelist Render's IP addresses (0.0.0.0/0 for simplicity, or specific IPs)
+# 3. Create a database user with read/write permissions
+# 4. Get connection string and add to MONGODB_URI in Render dashboard
+# 5. Replace <password> and <dbname> in connection string
+
+# Deployment Instructions:
+# 1. Push this file to your GitHub repository
+# 2. Connect repository to Render (https://dashboard.render.com)
+# 3. Render will auto-detect render.yaml and create both services
+# 4. Set sensitive environment variables in Render dashboard:
+#    - MONGODB_URI (MongoDB Atlas connection string)
+#    - EMAIL_USER (if using email notifications)
+#    - EMAIL_PASSWORD (if using email notifications)
+# 5. Update FRONTEND_URL in backend env vars with actual frontend URL
+# 6. Deploy!
+
+# Health Check Endpoint:
+# The backend should respond to GET /api/health with { status: 'ok' }
+# This is used by Render to verify the service is running

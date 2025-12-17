@@ -1,0 +1,89 @@
+/* Breadcrumbs Navigation Styles */
+
+.breadcrumbs {
+  background: var(--card-bg, #fff);
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+  padding: 12px 24px;
+  margin-bottom: 20px;
+}
+
+.breadcrumbs-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.breadcrumb-link {
+  color: var(--primary, #007bff);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.breadcrumb-link:hover {
+  background: var(--gray-100, #f5f5f5);
+  color: var(--primary-dark, #0056b3);
+}
+
+.breadcrumb-separator {
+  color: var(--text-secondary, #666);
+  font-weight: 300;
+  user-select: none;
+}
+
+.breadcrumb-current {
+  color: var(--text-primary, #1a1a1a);
+  font-weight: 500;
+  padding: 4px 8px;
+}
+
+/* Dark mode support */
+.dark-mode .breadcrumbs {
+  background: var(--dark-card, #1e1e1e);
+  border-bottom-color: var(--dark-border, #333);
+}
+
+.dark-mode .breadcrumb-link:hover {
+  background: var(--dark-hover, #2a2a2a);
+}
+
+.dark-mode .breadcrumb-current {
+  color: var(--dark-text-primary, #fff);
+}
+
+.dark-mode .breadcrumb-separator {
+  color: var(--dark-text-secondary, #b0b0b0);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .breadcrumbs {
+    padding: 8px 16px;
+  }
+  
+  .breadcrumbs-list {
+    gap: 4px;
+  }
+  
+  .breadcrumb-item {
+    font-size: 12px;
+  }
+  
+  .breadcrumb-link,
+  .breadcrumb-current {
+    padding: 2px 4px;
+  }
+}
+

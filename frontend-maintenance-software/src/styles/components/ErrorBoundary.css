@@ -1,0 +1,116 @@
+.error-boundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+}
+
+.error-boundary-content {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-lg);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.error-boundary-content h1 {
+  font-size: var(--font-size-2xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.error-message {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+}
+
+.error-details {
+  text-align: left;
+  margin: var(--space-xl) 0;
+  padding: var(--space-md);
+  background-color: var(--gray-100);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-300);
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: var(--space-sm);
+  user-select: none;
+}
+
+.error-details summary:hover {
+  color: var(--primary);
+}
+
+.error-stack {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.error-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-actions .btn {
+  min-width: 140px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .error-boundary {
+    padding: var(--space-lg);
+  }
+
+  .error-boundary-content {
+    padding: var(--space-xl);
+  }
+
+  .error-icon {
+    font-size: 3rem;
+  }
+
+  .error-boundary-content h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .error-actions .btn {
+    width: 100%;
+  }
+}
+

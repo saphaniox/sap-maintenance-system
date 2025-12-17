@@ -1,0 +1,307 @@
+/* Tooltip Component Styles */
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-trigger {
+  cursor: help;
+  display: inline-block;
+}
+
+.tooltip-content {
+  position: fixed;
+  background: var(--card-bg, #fff);
+  color: var(--text-primary, #1a1a1a);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 300px;
+  word-wrap: break-word;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color, #e0e0e0);
+  z-index: 1000;
+  pointer-events: none;
+  animation: tooltipFadeIn 0.2s ease;
+  transform: translate(-50%, -100%);
+  margin-top: -8px;
+}
+
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--card-bg, #fff);
+}
+
+.tooltip-content::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: var(--border-color, #e0e0e0);
+  margin-top: -1px;
+}
+
+/* Position variants */
+.tooltip-content.bottom {
+  transform: translate(-50%, 8px);
+}
+
+.tooltip-content.bottom::after {
+  top: -6px;
+  border-top-color: transparent;
+  border-bottom-color: var(--card-bg, #fff);
+}
+
+.tooltip-content.bottom::before {
+  top: -7px;
+  border-top-color: transparent;
+  border-bottom-color: var(--border-color, #e0e0e0);
+}
+
+.tooltip-content.left {
+  transform: translate(-100%, -50%);
+  margin-left: -8px;
+}
+
+.tooltip-content.left::after {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-left-color: var(--card-bg, #fff);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.tooltip-content.left::before {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-left-color: var(--border-color, #e0e0e0);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin-left: -1px;
+}
+
+.tooltip-content.right {
+  transform: translate(8px, -50%);
+}
+
+.tooltip-content.right::after {
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-right-color: var(--card-bg, #fff);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.tooltip-content.right::before {
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-right-color: var(--border-color, #e0e0e0);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin-right: -1px;
+}
+
+/* Info tooltip styles */
+.info-tooltip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: help;
+}
+
+.info-icon {
+  font-size: 14px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.info-tooltip:hover .info-icon {
+  opacity: 1;
+}
+
+/* Field tooltip styles */
+.field-with-tooltip {
+  margin-bottom: 16px;
+  display: block;
+  width: 100%;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700 !important;
+  color: #374151 !important;
+  margin-bottom: 8px;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  width: 100%;
+  line-height: 1.2;
+}
+
+.field-label label {
+  font-weight: 700 !important;
+  color: #374151 !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  margin: 0;
+  flex: 1;
+}
+
+.field-label .form-label {
+  font-weight: 700 !important;
+  color: #374151 !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  margin: 0;
+  display: inline;
+  flex: 1;
+}
+
+.help-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--primary, #667eea);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: help;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.help-icon:hover {
+  background: var(--primary-dark, #5568d3);
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+/* Dark mode support */
+.dark-mode .tooltip-content {
+  background: var(--dark-card, #1e1e1e);
+  color: var(--dark-text-primary, #fff);
+  border-color: var(--dark-border, #333);
+}
+
+.dark-mode .tooltip-content::after {
+  border-top-color: var(--dark-card, #1e1e1e);
+}
+
+.dark-mode .tooltip-content::before {
+  border-top-color: var(--dark-border, #333);
+}
+
+.dark-mode .tooltip-content.bottom::after {
+  border-bottom-color: var(--dark-card, #1e1e1e);
+}
+
+.dark-mode .tooltip-content.bottom::before {
+  border-bottom-color: var(--dark-border, #333);
+}
+
+.dark-mode .tooltip-content.left::after {
+  border-left-color: var(--dark-card, #1e1e1e);
+}
+
+.dark-mode .tooltip-content.left::before {
+  border-left-color: var(--dark-border, #333);
+}
+
+.dark-mode .tooltip-content.right::after {
+  border-right-color: var(--dark-card, #1e1e1e);
+}
+
+.dark-mode .tooltip-content.right::before {
+  border-right-color: var(--dark-border, #333);
+}
+
+.dark-mode .field-label {
+  color: var(--dark-text-primary, #fff);
+}
+
+/* Animations */
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+}
+
+.tooltip-content.bottom {
+  animation: tooltipFadeInBottom 0.2s ease;
+}
+
+@keyframes tooltipFadeInBottom {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 8px) scale(1);
+  }
+}
+
+.tooltip-content.left {
+  animation: tooltipFadeInLeft 0.2s ease;
+}
+
+@keyframes tooltipFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate(-100%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-100%, -50%) scale(1);
+  }
+}
+
+.tooltip-content.right {
+  animation: tooltipFadeInRight 0.2s ease;
+}
+
+@keyframes tooltipFadeInRight {
+  from {
+    opacity: 0;
+    transform: translate(8px, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(8px, -50%) scale(1);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .tooltip-content {
+    max-width: 250px;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+

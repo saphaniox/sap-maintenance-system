@@ -1,0 +1,59 @@
+# Environment variables - NEVER commit these
+.env
+.env.local
+.env.development
+.env.production
+backend-server/.env
+frontend-maintenance-software/.env
+
+# Dependencies
+node_modules/
+backend-server/node_modules/
+frontend-maintenance-software/node_modules/
+
+# Build outputs
+dist/
+build/
+frontend-maintenance-software/dist/
+frontend-maintenance-software/build/
+
+# Cache directories
+.vite/
+.cache/
+frontend-maintenance-software/.vite/
+backend-server/.vite/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Uploads directory (contains user-uploaded files)
+backend-server/uploads/
+uploads/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.windsurf/
+.cursor/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Misc
+*.pem
+.pnp
+.pnp.js
