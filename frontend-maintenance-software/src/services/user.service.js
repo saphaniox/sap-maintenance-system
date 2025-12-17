@@ -3,13 +3,20 @@ import axios from './api';
 const UserService = {
   // Get all users
   getAll: async (filters = {}) => {
-    const params = new URLSearchParams();
-    if (filters.role) params.append('role', filters.role);
-    if (filters.isActive !== undefined) params.append('isActive', filters.isActive);
-    if (filters.search) params.append('search', filters.search);
-    
-    const response = await axios.get(`/api/users?${params.toString()}`);
-    return response.data;
+    try {
+      const params = new URLSearchParams();
+      if (filters.role) params.append('role', filters.role);
+      if (filters.isActive !== undefined) params.append('isActive', filters.isActive);
+      if (filters.search) params.append('search', filters.search);
+      
+      console.log('Fetching users with URL:', `/api/users?${params.toString()}`);
+      const response = await axios.get(`/api/users?${params.toString()}`);
+      console.log('Users response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error in UserService.getAll:', error.response?.data || error.message);
+      throw error;
+    }
   },
 
   // Get single user
@@ -50,8 +57,15 @@ const UserService = {
 
   // Get user statistics
   getStats: async () => {
-    const response = await axios.get('/api/users/stats/overview');
-    return response.data;
+    try {
+      console.log('Fetching user stats from:', '/api/users/stats/overview');
+      const response = await axios.get('/api/users/stats/overview');
+      console.log('User stats response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error in UserService.getStats:', error.response?.data || error.message);
+      throw error;
+    }
   },
 };
 

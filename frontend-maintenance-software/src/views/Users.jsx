@@ -59,10 +59,13 @@ const Users = () => {
     try {
       setLoading(true);
       const data = await UserService.getAll(filters);
-      setUsers(data);
+      console.log('Fetched users:', data);
+      setUsers(data || []);
     } catch (error) {
       console.error('Error fetching users:', error);
-      toast.error('Failed to load users');
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to load users';
+      toast.error(errorMessage);
+      setUsers([]);
     } finally {
       setLoading(false);
     }
@@ -71,9 +74,12 @@ const Users = () => {
   const fetchStats = async () => {
     try {
       const data = await UserService.getStats();
+      console.log('Fetched user stats:', data);
       setStats(data);
     } catch (error) {
       console.error('Error fetching stats:', error);
+      const errorMessage = error.response?.data?.message || error.message;
+      console.error('Stats error details:', errorMessage);
     }
   };
 
