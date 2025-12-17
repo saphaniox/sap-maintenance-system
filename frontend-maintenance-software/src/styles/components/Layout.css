@@ -453,6 +453,15 @@
   }
 }
 
+/* Mobile-only menu items - hidden on desktop */
+.mobile-only {
+  display: none;
+}
+
+.mobile-menu-divider {
+  display: none;
+}
+
 /* Responsive - Mobile */
 @media (max-width: 968px) {
   /* Show mobile menu toggle */
@@ -491,6 +500,39 @@
     text-align: left;
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
+  }
+  
+  /* Show mobile-only items */
+  .mobile-only {
+    display: block;
+  }
+  
+  .mobile-menu-divider {
+    display: block;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: var(--space-sm) 0;
+    width: 100%;
+  }
+  
+  .mobile-logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-weight: 600;
+  }
+  
+  .mobile-logout-btn:hover {
+    background-color: rgba(255, 68, 68, 0.2);
+    color: #ff4444;
+  }
+  
+  .mobile-logout-btn span {
+    font-size: 1.1rem;
   }
   
   /* Mobile menu overlay */
@@ -552,6 +594,32 @@
   .navbar-actions .global-search {
     position: relative;
     max-width: 180px;
+  }
+  
+  /* Ensure user dropdown is always visible and accessible */
+  .user-dropdown {
+    position: relative;
+    z-index: 1001;
+  }
+  
+  .user-menu-btn {
+    padding: var(--space-xs);
+  }
+  
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  
+  .dropdown-arrow {
+    display: none;
+  }
+  
+  /* Make dropdown menu fit on small screens */
+  .user-menu {
+    right: 0;
+    min-width: 180px;
   }
 }
 

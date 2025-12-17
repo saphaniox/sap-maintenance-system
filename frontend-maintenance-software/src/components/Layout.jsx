@@ -140,6 +140,33 @@ function Layout({ children }) {
                 </Link>
               </li>
             )}
+            
+            {/* Mobile-only menu items */}
+            {user && (
+              <>
+                <li className="mobile-menu-divider"></li>
+                <li className="mobile-only">
+                  <Link 
+                    to="/profile" 
+                    className={`nav-link ${isActive('/profile') ? 'active' : ''}`}
+                    onClick={closeMobileMenu}
+                  >
+                    <span>👤</span> My Profile
+                  </Link>
+                </li>
+                <li className="mobile-only">
+                  <button 
+                    className="nav-link mobile-logout-btn" 
+                    onClick={() => {
+                      handleLogout();
+                      closeMobileMenu();
+                    }}
+                  >
+                    <span>🚪</span> Logout
+                  </button>
+                </li>
+              </>
+            )}
           </ul>
           
           {/* Right side actions */}
