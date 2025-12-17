@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 import authService from '../services/auth.service';
+import { forceClearAndReload, getLastCacheCleared } from '../utils/cacheManager';
+import { APP_VERSION } from '../config/version';
 import '../styles/pages/Profile.css';
 
 const Profile = () => {
@@ -521,8 +523,44 @@ const Profile = () => {
                   </div>
                 </div>
 
+                {/* Advanced Settings */}
+                <div className="settings-group">
+                  <h3>⚙️ Advanced</h3>
+                  <div className="setting-item">
+                    <div className="setting-info">
+                      <label className="setting-label">App Version</label>
+                      <p className="setting-description">Current version: {APP_VERSION}</p>
+                      {getLastCacheCleared() && (
+                        <p className="setting-description" style={{ fontSize: '12px', color: '#8c8c8c' }}>
+                          Cache last cleared: {new Date(getLastCacheCleared()).toLocaleString()}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="setting-item">
+                    <div className="setting-info">
+                      <label className="setting-label">Clear Cache</label>
+                      <p className="setting-description">Force clear all cached data and refresh the app</p>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-outline"
+                      onClick={() => {
+                        if (window.confirm('This will clear all cached data and reload the app. Continue?')) {
+                          forceClearAndReload();
+                        }
+                      }}
+                      style={{ maxWidth: '200px' }}
+                    >
+                      🗑️ Clear Cache & Reload
+                    </button>
+                  </div>
+                </div>
+
                 <div className="settings-info-box">
                   <p>💡 Settings are saved automatically and applied across all your devices.</p>
+                  <p>🔄 Cache is automatically cleared when a new version is deployed.</p>
                 </div>
               </div>
             </div>

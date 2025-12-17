@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { registerServiceWorker } from './utils/codeSplitting'
+import './utils/cacheManager' // Auto-check version and clear cache
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

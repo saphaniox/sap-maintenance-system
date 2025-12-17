@@ -1,8 +1,9 @@
 // Service Worker for offline support and caching
-const CACHE_NAME = 'maintenance-tracker-v1.0.0';
-const STATIC_CACHE = 'static-v1.0.0';
-const DYNAMIC_CACHE = 'dynamic-v1.0.0';
-const IMAGE_CACHE = 'images-v1.0.0';
+const VERSION = '1.0.1'; // Auto-increment to force cache clear
+const CACHE_NAME = `maintenance-tracker-v${VERSION}`;
+const STATIC_CACHE = `static-v${VERSION}`;
+const DYNAMIC_CACHE = `dynamic-v${VERSION}`;
+const IMAGE_CACHE = `images-v${VERSION}`;
 
 // Files to cache immediately
 const STATIC_FILES = [
@@ -36,13 +37,16 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('🔄 Service Worker activating...');
+  console.log('🔄 Service Worker activating... Version:', VERSION);
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
+        console.log('📋 Found caches:', cacheNames);
+        const currentCaches = [STATIC_CACHE, DYNAMIC_CACHE, IMAGE_CACHE, CACHE_NAME];
         return Promise.all(
           cacheNames.map((cacheName) => {
-            if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
+            // Delete ALL old caches that don't match current version
+            if (!currentCaches.includes(cacheName)) {
               console.log('🗑️ Deleting old cache:', cacheName);
               return caches.delete(cacheName);
             }
@@ -50,7 +54,13 @@ self.addEventListener('activate', (event) => {
         );
       })
       .then(() => {
-        console.log('✅ Service Worker activated successfully');
+        console.log('✅ Service Worker activated successfully - All old caches cleared');
+        // Clear old data from localStorage
+        self.clients.matchAll().then(clients => {
+          clients.forEach(client => {
+            client.postMessage({ type: 'CACHE_CLEARED', version: VERSION });
+          });
+        });
         return self.clients.claim();
       })
   );
