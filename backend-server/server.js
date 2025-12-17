@@ -59,8 +59,8 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Security: Data sanitization against NoSQL injection
-app.use(mongoSanitize());
+// Security: Data sanitization against NoSQL injection (Express 5 compatible)
+app.use(mongoSanitize({ replaceWith: '_' }));
 
 // Security: Prevent HTTP Parameter Pollution
 app.use(hpp());

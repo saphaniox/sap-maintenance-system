@@ -9,7 +9,7 @@ const siteSchema = new mongoose.Schema({
   code: {
     type: String,
     required: [true, 'Site code is required'],
-    unique: true,
+    unique: true, // unique creates index automatically, no need for separate index
     trim: true,
     uppercase: true
   },
@@ -109,7 +109,7 @@ const siteSchema = new mongoose.Schema({
 
 // Indexes for better query performance
 siteSchema.index({ name: 1 });
-siteSchema.index({ code: 1 });
+// Code index already created by unique: true in schema
 siteSchema.index({ status: 1 });
 siteSchema.index({ type: 1 });
 
