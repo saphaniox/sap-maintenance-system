@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { cacheUtils } from '../utils/cache';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 // Create a configured axios instance for all API calls
 const apiClient = axios.create({

@@ -9,7 +9,7 @@ class AuthService {
     
     // Build complete URL for avatar image if user has one
     if (user && user.avatar) {
-      user.avatar = `${import.meta.env.VITE_API_URL || 'http://localhost:4000'}${user.avatar}`;
+      user.avatar = `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${user.avatar}`;
     }
     
     // Save to browser storage so user stays logged in
@@ -25,7 +25,7 @@ class AuthService {
     
     // Build complete URL for avatar image if provided
     if (user && user.avatar) {
-      user.avatar = `${import.meta.env.VITE_API_URL || 'http://localhost:4000'}${user.avatar}`;
+      user.avatar = `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${user.avatar}`;
     }
     
     return { token, user };
@@ -40,7 +40,7 @@ class AuthService {
     
     // Build complete avatar URL
     if (response.data.user && response.data.user.avatar) {
-      response.data.user.avatar = `${import.meta.env.VITE_API_URL || 'http://localhost:4000'}${response.data.user.avatar}`;
+      response.data.user.avatar = `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${response.data.user.avatar}`;
     }
     
     // Keep localStorage in sync with updated profile
