@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useToast } from '../contexts/ToastContext';
 import { FieldTooltip } from './Tooltip';
 import '../styles/components/Login.css';
 
@@ -13,6 +14,7 @@ function Login() {
   
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { success: showSuccess } = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,8 +25,13 @@ function Login() {
     const result = await login(email, password);
     
     if (result.success) {
+      // Show success notification
+      showSuccess('✅ Login successful! Welcome back!', 3000);
+      
       // All good! Send them to the welcome page
-      navigate('/');
+      setTimeout(() => {
+        navigate('/');
+      }, 300);
     } else {
       // Something went wrong - show the error message
       setError(result.message);

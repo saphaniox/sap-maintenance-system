@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
+import { useToast } from '../contexts/ToastContext';
 import { FieldTooltip } from './Tooltip';
 import '../styles/components/Signup.css';
 
@@ -17,6 +18,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { success: showSuccess } = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,8 +67,13 @@ export default function Signup() {
       // Create the account
       await axios.post('/api/auth/register', { name, email, password });
       
+      // Show success notification
+      showSuccess('🎉 Account created successfully! Please login to continue.', 4000);
+      
       // Account created - redirect to login page
-      navigate('/login');
+      setTimeout(() => {
+        navigate('/login');
+      }, 500);
     } catch (err) {
       console.error('Registration error:', err.response?.data || err.message);
       
