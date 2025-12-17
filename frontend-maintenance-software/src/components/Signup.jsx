@@ -13,6 +13,7 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState('');
+  const [validationErrors, setValidationErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -20,23 +21,42 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setValidationErrors({});
 
-    // Make sure passwords match before sending to server
-    if (password !== confirm) {
-      setError('Passwords don\'t match. Please check and try again.');
-      return;
+    // Client-side validation
+    const errors = {};
+
+    // Validate name
+    if (!name || name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters long';
     }
 
-    // Enforce minimum password length (match backend requirements)
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+
+    // Validate password length
     if (password.length < 8) {
-      setError('Password must be at least 8 characters long');
-      return;
+      errors.password = 'Password must be at least 8 characters long';
     }
 
-    // Validate password complexity (match backend requirements)
+    // Validate password complexity
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]/;
-    if (!passwordRegex.test(password)) {
-      setError('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&#)');
+    if (password && !passwordRegex.test(password)) {
+      errors.password = 'Password must contain uppercase, lowercase, number, and special character (@$!%*?&#)';
+    }
+
+    // Make sure passwords match
+    if (password !== confirm) {
+      errors.confirm = 'Passwords don\'t match';
+    }
+
+    // If there are any validation errors, show them and don't submit
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      setError('Please fix the errors below before submitting');
       return;
     }
 
@@ -48,13 +68,26 @@ export default function Signup() {
       // Account created - redirect to login page
       navigate('/login');
     } catch (err) {
-      const errorMessage = err.response?.data?.message || err.message || 'Could not create account. Please try again.';
-      // Extract validation errors if present
+      console.error('Registration error:', err.response?.data || err.message);
+      
+      // Handle validation errors from backend
       if (err.response?.data?.errors && Array.isArray(err.response.data.errors)) {
-        const validationErrors = err.response.data.errors.map(e => e.msg).join(', ');
-        setError(validationErrors);
+        const backendErrors = {};
+        err.response.data.errors.forEach(error => {
+          // Map error field to our form fields (e.g., error.path or error.param)
+          const field = error.path || error.param;
+          if (field) {
+            backendErrors[field] = error.msg;
+          }
+        });
+        setValidationErrors(backendErrors);
+        setError(err.response.data.message || 'Validation failed. Please check the errors below.');
+      } else if (err.response?.status === 400 && err.response?.data?.message) {
+        // Handle specific error messages (like duplicate email)
+        setError(err.response.data.message);
       } else {
-        setError(errorMessage);
+        // Generic error
+        setError(err.response?.data?.message || err.message || 'Could not create account. Please try again.');
       }
     } finally {
       setLoading(false);
@@ -73,18 +106,36 @@ export default function Signup() {
           </FieldTooltip>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${validationErrors.name ? 'input-error' : ''}`}
             value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            placeholder="Enter your full name"
-          />
-        </div>
-
+            onChange={(e) => {
+              setName(e.target.value);
+              // Clear error when user starts typing
+              if (validationErrors.name) {
+                setValidationErrors(prev => ({ ...prev, name: '' }));
+              }
         <div className="form-group">
           <FieldTooltip content="Enter a valid work email address. This will be your login username and for notifications.">
             <label className="form-label">Email</label>
           </FieldTooltip>
+          <input
+            type="email"
+            className={`form-control ${validationErrors.email ? 'input-error' : ''}`}
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              // Clear error when user starts typing
+              if (validationErrors.email) {
+                setValidationErrors(prev => ({ ...prev, email: '' }));
+              }
+            }}
+            required
+            placeholder="Enter your email"
+          />
+          {validationErrors.email && (
+            <div className="field-error">{validationErrors.email}</div>
+          )}
+        </div>eldTooltip>
           <input
             type="email"
             className="form-control"
@@ -102,9 +153,15 @@ export default function Signup() {
           <div className="password-input-wrapper">
             <input
               type={showPassword ? "text" : "password"}
-              className="form-control"
+              className={`form-control ${validationErrors.password ? 'input-error' : ''}`}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                // Clear error when user starts typing
+                if (validationErrors.password) {
+                  setValidationErrors(prev => ({ ...prev, password: '' }));
+                }
+              }}
               required
               placeholder="Create a password"
               autoComplete="new-password"
@@ -118,6 +175,9 @@ export default function Signup() {
               {showPassword ? '🙈' : '👁️'}
             </button>
           </div>
+          {validationErrors.password && (
+            <div className="field-error">{validationErrors.password}</div>
+          )}
           {password && (
             <div className="password-requirements" style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
               <div style={{ color: password.length >= 8 ? 'green' : 'gray' }}>
@@ -134,26 +194,35 @@ export default function Signup() {
               </div>
               <div style={{ color: /[@$!%*?&#]/.test(password) ? 'green' : 'gray' }}>
                 {/[@$!%*?&#]/.test(password) ? '✓' : '○'} One special character (@$!%*?&#)
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="form-group">
-          <FieldTooltip content="Re-enter your password exactly as above to confirm it matches.">
-            <label className="form-label">Confirm password</label>
-          </FieldTooltip>
           <div className="password-input-wrapper">
             <input
               type={showConfirm ? "text" : "password"}
-              className="form-control"
+              className={`form-control ${validationErrors.confirm ? 'input-error' : ''}`}
               value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
+              onChange={(e) => {
+                setConfirm(e.target.value);
+                // Clear error when user starts typing
+                if (validationErrors.confirm) {
+                  setValidationErrors(prev => ({ ...prev, confirm: '' }));
+                }
+              }}
               required
               placeholder="Confirm your password"
               autoComplete="new-password"
             />
             <button
+              type="button"
+              className="password-toggle-btn"
+              onClick={() => setShowConfirm(!showConfirm)}
+              aria-label={showConfirm ? "Hide password" : "Show password"}
+            >
+              {showConfirm ? '🙈' : '👁️'}
+            </button>
+          </div>
+          {validationErrors.confirm && (
+            <div className="field-error">{validationErrors.confirm}</div>
+          )}
+        </div>utton
               type="button"
               className="password-toggle-btn"
               onClick={() => setShowConfirm(!showConfirm)}
