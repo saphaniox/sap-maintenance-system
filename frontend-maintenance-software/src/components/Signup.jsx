@@ -27,9 +27,9 @@ export default function Signup() {
       return;
     }
 
-    // Enforce minimum password length
-    if (password.length < 6) {
-      setError('Password should be at least 6 characters long');
+    // Enforce minimum password length (match backend requirements)
+    if (password.length < 8) {
+      setError('Password should be at least 8 characters long');
       return;
     }
 
@@ -82,7 +82,7 @@ export default function Signup() {
         </div>
 
         <div className="form-group">
-          <FieldTooltip content="Create a strong password with at least 6 characters, including letters and numbers.">
+          <FieldTooltip content="Create a strong password with at least 8 characters, including uppercase, lowercase, numbers, and special characters.">
             <label className="form-label">Password</label>
           </FieldTooltip>
           <div className="password-input-wrapper">
@@ -93,6 +93,7 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="Create a password"
+              autoComplete="new-password"
             />
             <button
               type="button"
@@ -117,6 +118,7 @@ export default function Signup() {
               onChange={(e) => setConfirm(e.target.value)}
               required
               placeholder="Confirm your password"
+              autoComplete="new-password"
             />
             <button
               type="button"
