@@ -49,6 +49,7 @@ app.use(cors({
   origin: [
     'http://localhost:3500',
     'http://localhost:5000',
+    'https://sap-maintenance-system.vercel.app',
     process.env.FRONTEND_URL
   ].filter(Boolean),
   credentials: true
