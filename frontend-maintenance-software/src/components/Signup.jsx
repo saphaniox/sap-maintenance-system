@@ -121,6 +121,15 @@ export default function Signup() {
               if (validationErrors.name) {
                 setValidationErrors(prev => ({ ...prev, name: '' }));
               }
+            }}
+            required
+            placeholder="Enter your full name"
+          />
+          {validationErrors.name && (
+            <div className="field-error">{validationErrors.name}</div>
+          )}
+        </div>
+
         <div className="form-group">
           <FieldTooltip content="Enter a valid work email address. This will be your login username and for notifications.">
             <label className="form-label">Email</label>
@@ -142,15 +151,6 @@ export default function Signup() {
           {validationErrors.email && (
             <div className="field-error">{validationErrors.email}</div>
           )}
-        </div>eldTooltip>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="Enter your email"
-          />
         </div>
 
         <div className="form-group">
@@ -201,6 +201,15 @@ export default function Signup() {
               </div>
               <div style={{ color: /[@$!%*?&#]/.test(password) ? 'green' : 'gray' }}>
                 {/[@$!%*?&#]/.test(password) ? '✓' : '○'} One special character (@$!%*?&#)
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="form-group">
+          <FieldTooltip content="Re-enter your password exactly as above to confirm it matches.">
+            <label className="form-label">Confirm password</label>
+          </FieldTooltip>
           <div className="password-input-wrapper">
             <input
               type={showConfirm ? "text" : "password"}
@@ -229,15 +238,6 @@ export default function Signup() {
           {validationErrors.confirm && (
             <div className="field-error">{validationErrors.confirm}</div>
           )}
-        </div>utton
-              type="button"
-              className="password-toggle-btn"
-              onClick={() => setShowConfirm(!showConfirm)}
-              aria-label={showConfirm ? "Hide password" : "Show password"}
-            >
-              {showConfirm ? '🙈' : '👁️'}
-            </button>
-          </div>
         </div>
 
         <button type="submit" className="signup-button" disabled={loading}>

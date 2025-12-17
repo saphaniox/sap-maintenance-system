@@ -1,3 +1,6 @@
+/* Import responsive styles */
+@import './styles/responsive.css';
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -28,9 +31,6 @@ body {
   min-height: 100vh;
   background-color: #ffffff;
 }
-
-/* Import responsive styles */
-@import './styles/responsive.css';
 
 h1 {
   font-size: 3.2em;
