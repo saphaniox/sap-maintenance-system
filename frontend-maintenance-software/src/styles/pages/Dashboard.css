@@ -1,6 +1,8 @@
 .dashboard-page {
-  padding: 24px;
-  background: var(--bg-secondary);
+  padding: var(--spacing-xl);
+  max-width: 1600px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -10,27 +12,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-  padding: 24px;
-  background: var(--bg-primary);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-light);
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1;
   transition: box-shadow 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .dashboard-header:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.15), 0 4px 6px -3px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-header h1 {
   margin: 0;
-  font-size: 30px;
-  color: var(--text-primary);
-  font-weight: 600;
-  line-height: 1.35;
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .dashboard-actions {
