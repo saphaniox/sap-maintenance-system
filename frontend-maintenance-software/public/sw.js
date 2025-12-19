@@ -1,5 +1,5 @@
 // Service Worker for offline support and caching
-const VERSION = '1.0.5'; // Auto-increment to force cache clear
+const VERSION = '1.0.6'; // Auto-increment to force cache clear
 const CACHE_NAME = `maintenance-tracker-v${VERSION}`;
 const STATIC_CACHE = `static-v${VERSION}`;
 const DYNAMIC_CACHE = `dynamic-v${VERSION}`;
