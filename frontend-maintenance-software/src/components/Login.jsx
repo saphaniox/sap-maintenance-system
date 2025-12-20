@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 import { FieldTooltip } from './Tooltip';
+import sapLogo from '../assets/saplogo.png';
 import '../styles/components/Login.css';
 
 function Login() {
@@ -43,6 +44,7 @@ function Login() {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
+        <img src={sapLogo} alt="SAP Management Software" className="login-logo" />
         <h2>Maintenance Tracker</h2>
         {error && <div className="error-message">{error}</div>}
         <div className="form-group">

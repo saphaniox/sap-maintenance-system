@@ -5,6 +5,7 @@ import NotificationCenter from './NotificationCenter';
 import GlobalSearch from './GlobalSearch';
 import Breadcrumbs from './Breadcrumbs';
 import { APP_VERSION } from '../config/version';
+import sapLogo from '../assets/saplogo.png';
 import '../styles/components/Layout.css';
 
 function Layout({ children }) {
@@ -42,7 +43,7 @@ function Layout({ children }) {
         <nav className="navbar-content">
           {/* Logo and brand */}
           <div className="navbar-brand-section">
-            <div className="company-logo">⚙️</div>
+            <img src={sapLogo} alt="SAP Management Software" className="company-logo" />
             <div className="brand-text">
               <h1 className="navbar-brand">SAP Maintenance</h1>
               <span className="brand-tagline">Professional Tracking System</span>

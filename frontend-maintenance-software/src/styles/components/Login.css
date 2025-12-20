@@ -10,6 +10,14 @@
   overflow: hidden;
 }
 
+.login-logo {
+  width: 120px;
+  height: auto;
+  margin: 0 auto var(--space-md);
+  display: block;
+  object-fit: contain;
+}
+
 /* Animated background elements */
 .login-container::before {
   content: '';

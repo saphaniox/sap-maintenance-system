@@ -4,6 +4,7 @@ import axios from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 import { FieldTooltip } from './Tooltip';
+import sapLogo from '../assets/saplogo.png';
 import '../styles/components/Signup.css';
 
 export default function Signup() {
@@ -104,6 +105,7 @@ export default function Signup() {
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={handleSubmit}>
+        <img src={sapLogo} alt="SAP Management Software" className="signup-logo" />
         <h2>Create an account</h2>
         {error && <div className="error-message">{error}</div>}
 
